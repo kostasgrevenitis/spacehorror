@@ -1,15 +1,15 @@
 import greenfoot.*;
 import java.awt.font.FontRenderContext;
+import java.awt.Color;
 import java.awt.Graphics2D;
 
-/**
- * This class provides objects that just show a bit of text on the screen.
- */
 public class Text extends Actor
 {
     public Text(int length)
     {
-        setImage(new GreenfootImage(length * 12, 16));
+        GreenfootImage txtImg = new GreenfootImage(length * 14, 16);
+        txtImg.setColor(greenfoot.Color.WHITE);
+        setImage(txtImg);
     }
 
     public Text(String text)
@@ -24,10 +24,7 @@ public class Text extends Actor
         image.clear();
         image.drawString(text, 2, 12);
     }
-    
-    /**
-     * Adapt location to make placement left-justified.
-     */
+
     public void setLocation(int x, int y)
     {
         super.setLocation(x + getImage().getWidth() / 2, y);

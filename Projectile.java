@@ -1,11 +1,5 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*; 
 
-/**
- * Write a description of class projectile here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Projectile extends Actor
 {
     int deathCounter = 30;
@@ -24,6 +18,6 @@ public class Projectile extends Actor
        
        if(deathCounter < 0){
            getWorld().removeObject(this);
-        }
+       }
     }    
 }

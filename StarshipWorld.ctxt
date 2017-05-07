@@ -1,17 +1,15 @@
 #BlueJ class context
 comment0.target=StarshipWorld
-comment0.text=\r\n\ @author\ Konstantinos\ Grevenitis\r\n\ @version\ 1.0\r\n
 comment1.params=
 comment1.target=StarshipWorld()
 comment2.params=
-comment2.target=void\ act()
+comment2.target=void\ BuildLifes()
 comment3.params=
-comment3.target=void\ BuildWorld()
+comment3.target=void\ SpawnPlayer()
 comment4.params=
-comment4.target=void\ SpawnEnemy()
-comment4.text=\r\n\ this\ method\ creates\ (4)\ 200x200\ fields\ for\ the\ enemies\ to\ be\ placed\ in\ when\ they\ spawn.\ in\ turn\ this\ creates\ a\ 400x800\r\n\ (T)\ shaped\ safe\ zone\ for\ the\ Player\ to\ spawn\ in.\r\n
+comment4.target=void\ BuildPortal()
 comment5.params=
-comment5.target=void\ SpawnPlayer()
+comment5.target=void\ SpawnEnemies()
 comment6.params=
-comment6.target=void\ BuildLifes()
+comment6.target=void\ SpawnEnemy()
 numComments=7

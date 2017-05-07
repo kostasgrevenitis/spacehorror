@@ -1,4 +1,3 @@
 #BlueJ class context
 comment0.target=Mover
-comment0.text=\r\n\ A\ thing\ that\ can\ move\ around\ with\ a\ certain\ speed.\ \r\n\ The\ mover\ maintains\ a\ movement\ vector\ of\ current\ movement.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n\ @author\ Michael\ K\u00F6lling\r\n\ \r\n\ @version\ 2.0\r\n\ \r\n\ Credit\ for\ this\ Class\ is\ given\ to\ the\ authors\ listed\ above\ (Roy\ Smith)\r\n
 numComments=1
