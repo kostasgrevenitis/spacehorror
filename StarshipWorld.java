@@ -9,23 +9,16 @@ public class StarshipWorld extends World {
     public StarshipWorld() {
         super(640, 480, 1);
         //https://www.greenfoot.org/files/javadoc/greenfoot/World.html#setPaintOrder-java.lang.Class...-
-        this.setPaintOrder(
-            Text.class, 
-            PlayerLife.class, 
-            GameOver.class, 
-            Enemy.class, 
-            Explosion.class, 
-            Projectile.class,
-            Player.class, 
-            Portal.class);
+        this.setPaintOrder(Text.class, PlayerLife.class, GameOver.class, Enemy.class, Explosion.class, Projectile.class,
+                Player.class, Portal.class);
 
         this.BuildLifes();
         this.SpawnPlayer();
         this.BuildPortal();
-        this.SpawnEnemies();
+        //this.SpawnEnemies();
     }
 
-        private void BuildLifes() {
+    private void BuildLifes() {
         int startLives = 5;
         for (int i = 0; i < startLives; i++) {
             PlayerLife life = new PlayerLife();
@@ -34,14 +27,14 @@ public class StarshipWorld extends World {
         }
     }
 
-        private void SpawnPlayer() {
+    private void SpawnPlayer() {
         Player player0 = new Player();
         addObject(player0, 320, 240);
         Text shotFiredText = new Text("Ammo spent : 0/15");
         addObject(shotFiredText, 10, 10);
     }
 
-        private void BuildPortal() {
+    private void BuildPortal() {
         Portal portal0 = new Portal();
         addObject(portal0, 320, 240);
     }

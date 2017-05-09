@@ -18,7 +18,7 @@ public class Portal extends Actor {
 
             //Στη κλάση Enemy το πλήθος δεν έπεφτε ποτέ κάτω από 1. Για να μηδενιστεί
             //έπρεπε να μπει εδώ.
-            ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : 0");
+            //((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : 0");
         }
         if (countFrame > 10 && countFrame <= 20) {
             setImage(new GreenfootImage("portal2.png"));

@@ -3,8 +3,8 @@ import greenfoot.*;
 public class Projectile extends Actor {
     int duration = 60;
 
-    public Projectile(int direction) {
-        setRotation(direction);
+    public Projectile(int x, int y) {
+        this.turnTowards(x, y);
     }
 
     public void act() {

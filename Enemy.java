@@ -1,6 +1,6 @@
 import greenfoot.*;
 
-public class Enemy extends Mover {
+public class Enemy extends Actor {
     public int countFrame = 1;//Variable used for animation
     public int hitEnemy = 0; //how many times the projectile hits enemy
     public int health = 2; //how many shots it takes to kill the enemy
@@ -32,7 +32,7 @@ public class Enemy extends Mover {
             if (hitEnemy == health) {
                 ((StarshipWorld) (getWorld())).spawnedEnemies--;
                 int spidersLeft = ((StarshipWorld) (getWorld())).spawnedEnemies;
-                ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : " + spidersLeft);
+                //((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : " + spidersLeft);
                 getWorld().removeObject(this);
             }
         }
