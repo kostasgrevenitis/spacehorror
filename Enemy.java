@@ -6,6 +6,7 @@ public class Enemy extends Actor {
     private int health = 2;
     private long startTime;
     private long startTime2;
+    private int movement = 2;
 
     public Enemy() {
         startTime = System.currentTimeMillis();
@@ -52,7 +53,7 @@ public class Enemy extends Actor {
             }
         }
         if (!isTouching(Player.class)) {
-            move(2);
+            move(this.movement);
         } else {
             move(0);
         }
@@ -78,40 +79,43 @@ public class Enemy extends Actor {
         move(0); //this adds movement speed to the enemy, which makes it +* faster than player
         if (intersects(player)) {
             StarshipWorld starshipWorld = (StarshipWorld) getWorld();
-            if (starshipWorld.playerLifes == 0) {
+            if (starshipWorld.playerLifes == 1) {
                 getWorld().addObject(new GameOver(), 320, 240);
-                getWorld().removeObjects(getWorld().getObjects(Enemy.class));
-                getWorld().removeObjects(getWorld().getObjects(Egg.class));
+                this.movement = 0;
             }
         }
     }
 
     private void layEgg() {
-        long eggNowTime = System.currentTimeMillis();
+        if (this.movement != 0) {
+            long eggNowTime = System.currentTimeMillis();
 
-        if (eggNowTime - startTime > 5000 && !isTouching(Player.class)) {
-            int randomEgg = Greenfoot.getRandomNumber(10);
-            if (randomEgg == 0) {
-                Egg egg = new Egg();
-                getWorld().addObject(egg, getX(), getY());
+            if (eggNowTime - startTime > 5000 && !isTouching(Player.class)) {
+                int randomEgg = Greenfoot.getRandomNumber(10);
+                if (randomEgg == 0) {
+                    Egg egg = new Egg();
+                    getWorld().addObject(egg, getX(), getY());
+                }
+                startTime = System.currentTimeMillis();
             }
-            startTime = System.currentTimeMillis();
         }
     }
 
     private void clusterBreed() {
-        Egg egg = new Egg();
-        try {
-            if (getNeighbours(100, false, Egg.class).size() > 0) {
-                long nowTime = System.currentTimeMillis();
-                if (nowTime - startTime > 7000 && !isTouching(Explosion.class) && !isTouching(Projectile.class)) {
-                    getWorld().addObject(egg, getX(), getY());
-                    getWorld().removeObject(this);
-                    startTime2 = System.currentTimeMillis();
+        if (this.movement != 0) {
+            Egg egg = new Egg();
+            try {
+                if (getNeighbours(100, false, Egg.class).size() > 0) {
+                    long nowTime = System.currentTimeMillis();
+                    if (nowTime - startTime > 7000 && !isTouching(Explosion.class) && !isTouching(Projectile.class)) {
+                        getWorld().addObject(egg, getX(), getY());
+                        getWorld().removeObject(this);
+                        startTime2 = System.currentTimeMillis();
+                    }
                 }
-            }
-        } catch (IllegalStateException e) {
+            } catch (IllegalStateException e) {
 
+            }
         }
     }
 }
