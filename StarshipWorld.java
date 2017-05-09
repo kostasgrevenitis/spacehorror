@@ -5,9 +5,12 @@ public class StarshipWorld extends World {
     public int locationY;
     public int spawnedEnemies;
     private int xOffset = 0;
+    public int playerLifes = 5;
 
     public StarshipWorld() {
         super(640, 480, 1);
+        int img = Greenfoot.getRandomNumber(3) + 1;
+        this.setBackground(new GreenfootImage("background00" + img + ".jpg"));
         this.setPaintOrder(Text.class, PlayerLife.class, GameOver.class, Enemy.class, Explosion.class, Projectile.class,
                 Player.class, Portal.class);
 
@@ -18,8 +21,7 @@ public class StarshipWorld extends World {
     }
 
     private void BuildLifes() {
-        int startLives = 5;
-        for (int i = 0; i < startLives; i++) {
+        for (int i = 0; i < playerLifes; i++) {
             PlayerLife life = new PlayerLife();
             addObject(life, 250 + xOffset, 20);
             xOffset = xOffset + 30;

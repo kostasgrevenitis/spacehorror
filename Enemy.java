@@ -4,12 +4,10 @@ public class Enemy extends Actor {
     private int countFrame = 1;
     private int hitEnemy = 0;
     private int health = 2;
-    private GreenfootImage BloodImage;
     private long startTime;
     private long startTime2;
 
     public Enemy() {
-        this.BloodImage = new GreenfootImage("spr_blood_0.png");
         startTime = System.currentTimeMillis();
         startTime2 = System.currentTimeMillis();
     }
@@ -79,14 +77,13 @@ public class Enemy extends Actor {
         turnTowards(player.getX(), player.getY());
         move(0); //this adds movement speed to the enemy, which makes it +* faster than player
         if (intersects(player)) {
-            getWorld();
-            setImage(this.BloodImage);
-
-            //display Game Over
-            GameOver gameOver = new GameOver();
-            getWorld().addObject(gameOver, 320, 240);
+            StarshipWorld starshipWorld = (StarshipWorld) getWorld();
+            if (starshipWorld.playerLifes == 0) {
+                getWorld().addObject(new GameOver(), 320, 240);
+                getWorld().removeObjects(getWorld().getObjects(Enemy.class));
+                getWorld().removeObjects(getWorld().getObjects(Egg.class));
+            }
         }
-
     }
 
     private void layEgg() {

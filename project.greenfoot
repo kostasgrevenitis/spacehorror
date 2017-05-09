@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue May 09 23:45:45 EEST 2017
+#Wed May 10 00:42:57 EEST 2017
 target16.name=StarshipWorld
 dependency35.to=ButtonPlay
 editor.swing.0.y=0
@@ -41,7 +41,7 @@ target12.y=190
 target12.x=190
 class.ButtonControls.superclass=greenfoot.Actor
 target18.width=110
-editor.fx.0.height=739
+editor.fx.0.height=0
 project.charset=UTF-8
 dependency40.to=Projectile
 target12.typeParameters=
@@ -170,12 +170,12 @@ target4.type=ClassTarget
 editor.swing.2.y=99
 editor.swing.2.x=114
 dependency33.from=Countdown
-editor.fx.0.y=179
+editor.fx.0.y=0
 dependency36.type=UsesDependency
-editor.fx.0.x=997
+editor.fx.0.x=0
 dependency11.to=Projectile
 target6.height=50
-editor.fx.0.width=816
+editor.fx.0.width=0
 dependency32.to=Text
 class.PlayerLife.superclass=greenfoot.Actor
 dependency5.type=UsesDependency
@@ -257,7 +257,7 @@ dependency20.type=UsesDependency
 target16.type=ClassTarget
 dependency27.type=UsesDependency
 dependency24.from=Enemy
-class.Controls.image=backgound_controls.png
+class.Controls.image=sceen_controls.png
 target2.type=ClassTarget
 dependency44.to=Text
 target9.type=ClassTarget

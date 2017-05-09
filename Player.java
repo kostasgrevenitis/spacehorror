@@ -13,7 +13,20 @@ public class Player extends Actor {
     }
 
     public void act() {
-             if (Greenfoot.mouseClicked(null) && !isTouching(Enemy.class)) {
+        if (isTouching(Enemy.class) == true) {
+            StarshipWorld starshipWorld = (StarshipWorld) getWorld();
+            if (starshipWorld.playerLifes > 0) {
+                starshipWorld.playerLifes--;
+                PlayerLife playerLife = (PlayerLife) getWorld().getObjects(PlayerLife.class).get(0);
+                if (playerLife != null) {
+                    getWorld().removeObject(playerLife);
+                }
+                this.setLocation(this.getX() + 60, this.getY() + 60);
+            }
+            return;
+        }
+
+        if (Greenfoot.mouseClicked(null) && !isTouching(Enemy.class)) {
             this.FireGun();
             return;
         }
@@ -52,7 +65,7 @@ public class Player extends Actor {
             this.degrees = 0;
         }
 
-        if(direction == ""){
+        if (direction == "") {
             return;
         }
 
@@ -101,7 +114,8 @@ public class Player extends Actor {
             Projectile projectile = new Projectile(this.degrees);
             getWorld().addObject(projectile, this.getX(), this.getY());
             shotsFired++;
-            ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/" + magazineSize);
+            ((Text) (getWorld().getObjects(Text.class).get(0)))
+                    .setText("Ammo spent : " + shotsFired + "/" + magazineSize);
         }
     }
 
