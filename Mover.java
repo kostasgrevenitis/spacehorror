@@ -1,6 +1,5 @@
-import greenfoot.*; 
+import greenfoot.*;
 
-public abstract class Mover extends Actor
-{
-    
+public abstract class Mover extends Actor {
+
 }

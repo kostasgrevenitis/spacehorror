@@ -1,96 +1,103 @@
 import greenfoot.*;
 
 public class Player extends Mover {
-    private int gunReloadTime;
     private int shotsFired;
-    public int sprint;
-
-    private static int rotRight = 0;
-    private static int rotDown = 90;
-    private static int rotLeft = 180;
-    private static int rotUp = 270;
-    public int currentRotation = 0;
-
-    public boolean isShiftDown = false;
-    public int countFrame;
-
-    private GreenfootImage PlayerRight0;
-    private GreenfootImage PlayerRight1;
-    private GreenfootImage PlayerRight2;
-    private GreenfootImage PlayerRight3;
-    private GreenfootImage PlayerRight4;
-    private GreenfootImage PlayerRight5;
-    private GreenfootImage PlayerRight6;
-    private GreenfootImage PlayerRight7;
+    private boolean isShiftDown = false;
+    private int countFrame;
 
     public Player() {
-        gunReloadTime = 15;
-        shotsFired = 0;
-
-        PlayerRight0 = new GreenfootImage("spr_player_right000.png");
-        PlayerRight1 = new GreenfootImage("spr_player_right001.png");
-        PlayerRight2 = new GreenfootImage("spr_player_right002.png");
-        PlayerRight3 = new GreenfootImage("spr_player_right003.png");
-        PlayerRight4 = new GreenfootImage("spr_player_right004.png");
-        PlayerRight5 = new GreenfootImage("spr_player_right005.png");
-        PlayerRight6 = new GreenfootImage("spr_player_right006.png");
-        PlayerRight7 = new GreenfootImage("spr_player_right007.png");
+        this.shotsFired = 0;
     }
 
     public void act() {
         this.MoveCharacter();
-        this.SetAnimation();
-        this.CountFrame();
         this.CheckKeys();
 
-        if (Greenfoot.mouseMoved(null) && !isTouching(Enemy.class)) {
-            MouseInfo mi = Greenfoot.getMouseInfo();
-            turnTowards(mi.getX(), mi.getY());
-        }
+        // if (Greenfoot.mouseMoved(null) && !isTouching(Enemy.class)) {
+        //     MouseInfo mi = Greenfoot.getMouseInfo();
+        //     turnTowards(mi.getX(), mi.getY());
+        // }
     }
 
     public void MoveCharacter() {
-        if (Greenfoot.isKeyDown("s") && !isTouching(Enemy.class)) {
-            move(-2);
-        }
-        if (Greenfoot.isKeyDown("w") && !isTouching(Enemy.class)) {
-            move(2);
+        this.countFrame++;
+
+        if ((Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("a")
+                || Greenfoot.isKeyDown("d")) && !isTouching(Enemy.class)) {
+            this.move(2);
+            this.SetAnimation(Greenfoot.getKey());
         }
 
         if (Greenfoot.isKeyDown("shift") && !isTouching(Enemy.class)) {
             isShiftDown = true;
-            move(2);
-            sprint = 1;
+            move(4);
         } else {
             isShiftDown = false;
         }
     }
 
-    public void SetAnimation() {
-        if (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s")) {
-            if (countFrame <= 10)
-                setImage(PlayerRight0);
-            if (countFrame <= 20 && countFrame > 10)
-                setImage(PlayerRight1);
-            if (countFrame <= 30 && countFrame > 20)
-                setImage(PlayerRight2);
-            if (countFrame <= 40 && countFrame > 30)
-                setImage(PlayerRight3);
-            if (countFrame <= 50 && countFrame > 40)
-                setImage(PlayerRight4);
-            if (countFrame <= 60 && countFrame > 50)
-                setImage(PlayerRight5);
-            if (countFrame <= 70 && countFrame > 60)
-                setImage(PlayerRight6);
-            if (countFrame <= 80 && countFrame > 70) {
-                setImage(PlayerRight7);
-                countFrame = 0;
-            }
+    public void SetAnimation(String key) {
+
+        String direction = "";
+        switch (key) {
+        case "w":
+            direction = "up";
+            break;
+
+        case "s":
+            direction = "down";
+            break;
+
+        case "a":
+            direction = "left";
+            break;
+
+        case "d":
+            direction = "right";
+            break;
         }
-    }
-    public void CountFrame() {
-        if (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s"))
-            countFrame++;
+
+        GreenfootImage Player0 = new GreenfootImage("spr_player_" + direction + "000.png");
+        GreenfootImage Player1 = new GreenfootImage("spr_player_" + direction + "001.png");
+        GreenfootImage Player2 = new GreenfootImage("spr_player_" + direction + "002.png");
+        GreenfootImage Player3 = new GreenfootImage("spr_player_" + direction + "003.png");
+        GreenfootImage Player4 = new GreenfootImage("spr_player_" + direction + "004.png");
+        GreenfootImage Player5 = new GreenfootImage("spr_player_" + direction + "005.png");
+        GreenfootImage Player6 = new GreenfootImage("spr_player_" + direction + "006.png");
+        GreenfootImage Player7 = new GreenfootImage("spr_player_" + direction + "007.png");
+
+        if (countFrame <= 10) {
+            setImage(Player0);
+        }
+
+        if (countFrame <= 20 && countFrame > 10){
+            setImage(Player1);
+        }
+            
+        if (countFrame <= 30 && countFrame > 20){
+            setImage(Player2);
+        }
+            
+        if (countFrame <= 40 && countFrame > 30){
+            setImage(Player3);
+        }
+            
+        if (countFrame <= 50 && countFrame > 40){
+            setImage(Player4);
+        }
+            
+        if (countFrame <= 60 && countFrame > 50){
+            setImage(Player5);
+        }
+            
+        if (countFrame <= 70 && countFrame > 60){
+            setImage(Player6);
+        }
+            
+        if (countFrame <= 80 && countFrame > 70) {
+            setImage(Player7);
+            countFrame = 0;
+        }
     }
 
     private void CheckKeys() {
