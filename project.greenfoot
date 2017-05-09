@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue May 09 22:49:43 EEST 2017
+#Tue May 09 23:18:55 EEST 2017
 target16.name=Menu
 dependency35.to=ButtonPlay
 editor.swing.0.y=0
@@ -170,9 +170,9 @@ target4.type=ClassTarget
 editor.swing.2.y=99
 editor.swing.2.x=114
 dependency33.from=Countdown
-editor.fx.0.y=178
+editor.fx.0.y=179
 dependency36.type=UsesDependency
-editor.fx.0.x=1002
+editor.fx.0.x=997
 dependency11.to=Projectile
 target6.height=50
 editor.fx.0.width=816
