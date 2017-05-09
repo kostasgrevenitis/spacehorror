@@ -30,6 +30,6 @@ public class Explosion extends Actor {
 
     public void act() {
         countFrame++;
-        Explode();
+        this.Explode();
     }
 }

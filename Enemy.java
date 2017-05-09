@@ -1,10 +1,9 @@
 import greenfoot.*;
 
 public class Enemy extends Actor {
-    public int countFrame = 1;//Variable used for animation
-    public int hitEnemy = 0; //how many times the projectile hits enemy
-    public int health = 2; //how many shots it takes to kill the enemy
-
+    private int countFrame = 1;
+    private int hitEnemy = 0;
+    private int health = 2;
     private GreenfootImage BloodImage;
     private long startTime;
     private long startTime2;

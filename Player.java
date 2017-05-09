@@ -1,10 +1,12 @@
 import greenfoot.*;
 
 public class Player extends Actor {
-    private int shotsFired;
-    private int countFrame;
+    private int shotsFired = 0;
+    private int countFrame = 0;
     private int x = 0;
     private int y = 0;
+    private int degrees = 0;
+    private int magazineSize = 30;
 
     public Player() {
         this.shotsFired = 0;
@@ -26,24 +28,28 @@ public class Player extends Actor {
             direction = "up";
             this.x = this.getX();
             this.y = this.getY() - 3;
+            this.degrees = 270;
         }
 
         if (Greenfoot.isKeyDown("s") && !isTouching(Enemy.class)) {
             direction = "down";
             this.x = this.getX();
             this.y = this.getY() + 3;
+            this.degrees = 90;
         }
 
         if (Greenfoot.isKeyDown("a") && !isTouching(Enemy.class)) {
             direction = "left";
             this.x = this.getX() - 3;
             this.y = this.getY();
+            this.degrees = 180;
         }
 
         if (Greenfoot.isKeyDown("d") && !isTouching(Enemy.class)) {
             direction = "right";
             this.x = this.getX() + 3;
             this.y = this.getY();
+            this.degrees = 0;
         }
 
         if(direction == ""){
@@ -91,16 +97,16 @@ public class Player extends Actor {
     }
 
     private void FireGun() {
-        if (shotsFired < 25) {
-            Projectile projectile = new Projectile(this.x, this.y);
+        if (shotsFired < magazineSize) {
+            Projectile projectile = new Projectile(this.degrees);
             getWorld().addObject(projectile, this.getX(), this.getY());
             shotsFired++;
-            ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/25");
+            ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/" + magazineSize);
         }
     }
 
     public void ReloadGun() {
         shotsFired = 0;
-        ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/25");
+        ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/" + magazineSize);
     }
 }
