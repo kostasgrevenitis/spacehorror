@@ -8,14 +8,13 @@ public class StarshipWorld extends World {
 
     public StarshipWorld() {
         super(640, 480, 1);
-        //https://www.greenfoot.org/files/javadoc/greenfoot/World.html#setPaintOrder-java.lang.Class...-
         this.setPaintOrder(Text.class, PlayerLife.class, GameOver.class, Enemy.class, Explosion.class, Projectile.class,
                 Player.class, Portal.class);
 
         this.BuildLifes();
         this.SpawnPlayer();
         this.BuildPortal();
-        //this.SpawnEnemies();
+        this.SpawnEnemies();
     }
 
     private void BuildLifes() {

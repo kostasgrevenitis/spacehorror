@@ -1,4 +1,4 @@
-import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 public class Portal extends Actor {
     private long startTime = System.currentTimeMillis();
@@ -15,10 +15,8 @@ public class Portal extends Actor {
         }
         if (countFrame > 0 && countFrame <= 10) {
             setImage(new GreenfootImage("portal1.png"));
-
-            //Στη κλάση Enemy το πλήθος δεν έπεφτε ποτέ κάτω από 1. Για να μηδενιστεί
-            //έπρεπε να μπει εδώ.
-            //((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : 0");
+            //Στη κλάση Enemy το πλήθος δεν έπεφτε ποτέ κάτω από 1. Για να μηδενιστεί έπρεπε να μπει εδώ.
+            ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : 0");
         }
         if (countFrame > 10 && countFrame <= 20) {
             setImage(new GreenfootImage("portal2.png"));

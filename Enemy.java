@@ -31,7 +31,7 @@ public class Enemy extends Actor {
             if (hitEnemy == health) {
                 ((StarshipWorld) (getWorld())).spawnedEnemies--;
                 int spidersLeft = ((StarshipWorld) (getWorld())).spawnedEnemies;
-                //((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : " + spidersLeft);
+                ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : " + spidersLeft);
                 getWorld().removeObject(this);
             }
         }
