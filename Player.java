@@ -1,19 +1,10 @@
 import greenfoot.*;
 
-/**
- * @author Konstantinos Grevenitis
- * @version 1.0
- */
-
 public class Player extends Mover {
-    //Variables that control the firing aspect of the game
     private int gunReloadTime;
-    private int reloadDelayCount;
     private int shotsFired;
-    public int stability;
     public int sprint;
 
-    //Contrls the direction the player is facing
     private static int rotRight = 0;
     private static int rotDown = 90;
     private static int rotLeft = 180;
@@ -21,13 +12,8 @@ public class Player extends Mover {
     public int currentRotation = 0;
 
     public boolean isShiftDown = false;
-
-    //Variable used for animation
     public int countFrame;
 
-    /**
-     * Player portrait
-     */
     private GreenfootImage PlayerRight0;
     private GreenfootImage PlayerRight1;
     private GreenfootImage PlayerRight2;
@@ -37,16 +23,10 @@ public class Player extends Mover {
     private GreenfootImage PlayerRight6;
     private GreenfootImage PlayerRight7;
 
-    /**
-     * Start the Player with the following attributes
-     */
     public Player() {
         gunReloadTime = 15;
-        reloadDelayCount = 0;
         shotsFired = 0;
-        stability = 100;
 
-        //only images need are character facing right, since we can rotate him and animation stays the same.
         PlayerRight0 = new GreenfootImage("spr_player_right000.png");
         PlayerRight1 = new GreenfootImage("spr_player_right001.png");
         PlayerRight2 = new GreenfootImage("spr_player_right002.png");
@@ -57,22 +37,11 @@ public class Player extends Mover {
         PlayerRight7 = new GreenfootImage("spr_player_right007.png");
     }
 
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act() {
-        //movement method
-        movement();
-
-        //Animation
-        setAnimation();
-        countFrame();
-
-        //bang bang
-        checkKeys();
-        reloadDelayCount++;
-        emptyMag();
+        this.MoveCharacter();
+        this.SetAnimation();
+        this.CountFrame();
+        this.CheckKeys();
 
         if (Greenfoot.mouseMoved(null) && !isTouching(Enemy.class)) {
             MouseInfo mi = Greenfoot.getMouseInfo();
@@ -80,11 +49,7 @@ public class Player extends Mover {
         }
     }
 
-    /**
-     * Check to see which key is pressed and determine the action it performs
-     *
-     */
-    public void movement() {
+    public void MoveCharacter() {
         if (Greenfoot.isKeyDown("s") && !isTouching(Enemy.class)) {
             move(-2);
         }
@@ -101,68 +66,7 @@ public class Player extends Mover {
         }
     }
 
-    /**
-     * Set the time needed for reloading the Players gun. The shorter the time,
-     * the faster the rifle fires.
-     */
-    public void setGunReloadTime(int reloadTime) {
-        gunReloadTime = reloadTime;
-    }
-
-    /**
-     * Fire a projectile if the gun is ready
-     */
-    private void fire() {
-        if (reloadDelayCount >= gunReloadTime) {
-            Projectile projectile = new Projectile(getRotation());
-            getWorld().addObject(projectile, getX(), getY());
-            shotsFired++;
-            ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/15");
-            reloadDelayCount = 0;
-        }
-    }
-
-    /**
-     * Return the number of shots fired from this Player
-     */
-    public int getShotsfired() {
-        return shotsFired;
-    }
-
-    /**
-     * Check to see if Player is firing weapon or reloading
-     */
-    private void checkKeys() {
-        if (Greenfoot.mouseClicked(null) && !isShiftDown && !isTouching(Enemy.class)) {
-            fire();
-        }
-        if (Greenfoot.isKeyDown("r")) {
-            reload();
-        }
-    }
-
-    /**
-     * Method that controls reloading your weapon
-     */
-    public void emptyMag() {
-        if (shotsFired == 15) {
-            gunReloadTime = 400;
-        }
-    }
-
-    /**
-     * Reload your Weapon
-     */
-    public void reload() {
-        gunReloadTime = 15;
-        shotsFired = 0;
-        ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/15");
-    }
-
-    /**
-    * Set Animation
-    */
-    public void setAnimation() {
+    public void SetAnimation() {
         if (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s")) {
             if (countFrame <= 10)
                 setImage(PlayerRight0);
@@ -184,12 +88,31 @@ public class Player extends Mover {
             }
         }
     }
-
-    /**
-     * countFrame is used to animate by delaying the next image
-     */
-    public void countFrame() {
+    public void CountFrame() {
         if (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s"))
             countFrame++;
+    }
+
+    private void CheckKeys() {
+        if (Greenfoot.mouseClicked(null) && !isShiftDown && !isTouching(Enemy.class)) {
+            this.FireGun();
+        }
+        if (Greenfoot.isKeyDown("r")) {
+            this.ReloadGun();
+        }
+    }
+
+    private void FireGun() {
+        if (shotsFired < 25) {
+            Projectile projectile = new Projectile(getRotation());
+            getWorld().addObject(projectile, getX(), getY());
+            shotsFired++;
+            ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/25");
+        }
+    }
+
+    public void ReloadGun() {
+        shotsFired = 0;
+        ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/25");
     }
 }
