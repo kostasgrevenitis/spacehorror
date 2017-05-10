@@ -56,6 +56,7 @@ public class Enemy extends Actor {
                 if (intersects(player)) {
                     StarshipWorld starshipWorld = (StarshipWorld) getWorld();
                     if (starshipWorld.playerLifes == 1) {
+                        Greenfoot.playSound("Scream+9.mp3");
                         getWorld().addObject(new GameOver(), 320, 240);
                         movementStep = 0;
                     }
@@ -78,6 +79,7 @@ public class Enemy extends Actor {
                 starshipWorld.score = starshipWorld.score + 100;
                 ((Text) (getWorld().getObjects(Text.class).get(3))).setText("Score : " + starshipWorld.score);
 
+                Greenfoot.playSound("Chomp+1.mp3");
                 getWorld().removeObject(this);
             }
         }

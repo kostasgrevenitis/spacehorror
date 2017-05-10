@@ -28,11 +28,13 @@ public class Player extends Actor {
 
         if (Greenfoot.mouseClicked(null) && !isTouching(Enemy.class)) {
             this.FireGun();
+            Greenfoot.playSound("Gun+Luger.mp3");
             return;
         }
 
         if (Greenfoot.isKeyDown("r")) {
             this.ReloadGun();
+            Greenfoot.playSound("Gun+Reload.mp3");
             return;
         }
 

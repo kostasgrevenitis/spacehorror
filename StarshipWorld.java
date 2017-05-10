@@ -21,6 +21,7 @@ public class StarshipWorld extends World {
         this.BuildPortal();
         this.SpawnEnemies();
         this.InitiateLevelAndScore();
+        Greenfoot.playSound("electriccurrent.mp3");
     }
 
     private void BuildLifes() {
