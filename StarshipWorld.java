@@ -43,7 +43,6 @@ public class StarshipWorld extends World {
     private void SpawnEnemies() {
         this.spawnedEnemies = (Greenfoot.getRandomNumber(4) + 1);
         addObject(new Text("Spiders left : " + spawnedEnemies), 10, 30);
-
         for (int i = 0; i < spawnedEnemies; i++) {
             this.SpawnEnemy();
         }

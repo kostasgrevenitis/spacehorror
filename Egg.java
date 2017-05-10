@@ -4,17 +4,27 @@ public class Egg extends Actor {
     public long startHatch = System.currentTimeMillis();
 
     public void act() {
-        health();
-        hatch();
-        hatchAnimation();
+        this.HealthStatus();
+        this.Hatch();
+        τηισ.HatchAnimation();
     }
 
-    private void hatch() {
+    void HealthStatus() {
+        if (isTouching(Projectile.class)) {
+            removeTouching(Projectile.class);
+            getWorld().removeObject(this);
+        }
+    }
+
+    private void Hatch() {
         long nowHatch = System.currentTimeMillis();
 
         if (nowHatch - startHatch > 2000) {
-            int spiderNumber = Greenfoot.getRandomNumber(7) + 3;
+            int spiderNumber = Greenfoot.getRandomNumber(3) + 2;
+            ((StarshipWorld) (getWorld())).spawnedEnemies = ((StarshipWorld) (getWorld())).spawnedEnemies + spiderNumber;
 
+            int spidersLeft = ((StarshipWorld) (getWorld())).spawnedEnemies;
+            ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : " + spidersLeft);
             for (int i = 0; i < spiderNumber; i++) {
                 Enemy spider = new Enemy();
                 getWorld().addObject(spider, getX(), getY());
@@ -24,14 +34,7 @@ public class Egg extends Actor {
         }
     }
 
-    void health() {
-        if (isTouching(Projectile.class)) {
-            removeTouching(Projectile.class);
-            getWorld().removeObject(this);
-        }
-    }
-
-    private void hatchAnimation() {
+    private void HatchAnimation() {
         long hatchNow = System.currentTimeMillis();
         if (hatchNow - startHatch < 200) {
             setImage(new GreenfootImage("creep_egg0.png"));
