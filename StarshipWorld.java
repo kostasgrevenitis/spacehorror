@@ -34,7 +34,7 @@ public class StarshipWorld extends World {
     private void SpawnPlayer() {
         Player player0 = new Player();
         addObject(player0, 320, 240);
-        Text shotFiredText = new Text("Ammo spent : 0/15");
+        Text shotFiredText = new Text("Ammo spent : 0/30");
         addObject(shotFiredText, 10, 10);
     }
 
