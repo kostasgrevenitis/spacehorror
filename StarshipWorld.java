@@ -1,14 +1,16 @@
 import greenfoot.*;
 
 public class StarshipWorld extends World {
-    public int locationX;
-    public int locationY;
     public int spawnedEnemies;
-    private int xOffset = 0;
     public int playerLifes = 5;
+    private int xOffset = 0;
+
+    public static int score = 0;
+    public static int level = 0;
 
     public StarshipWorld() {
         super(640, 480, 1);
+        level++;
         int img = Greenfoot.getRandomNumber(3) + 1;
         this.setBackground(new GreenfootImage("background00" + img + ".jpg"));
         this.setPaintOrder(Text.class, PlayerLife.class, GameOver.class, Enemy.class, Explosion.class, Projectile.class,
@@ -18,6 +20,7 @@ public class StarshipWorld extends World {
         this.SpawnPlayer();
         this.BuildPortal();
         this.SpawnEnemies();
+        this.InitiateLevelAndScore();
     }
 
     private void BuildLifes() {
@@ -50,10 +53,24 @@ public class StarshipWorld extends World {
 
     public void SpawnEnemy() {
         //Για να σιγουρέψουμε ότι δημιουργείται ο εχθρός μακριά από το παίχτη
-        locationX = Greenfoot.getRandomNumber(50);
-        locationY = Greenfoot.getRandomNumber(50);
-
         Enemy enemy = new Enemy();
-        addObject(enemy, locationX, locationY);
+        addObject(enemy, Greenfoot.getRandomNumber(50), Greenfoot.getRandomNumber(50));
+    }
+
+    public void InitiateLevelAndScore() {
+        if (getObjects(Text.class).size() > 2) {
+            Text level = (Text) getObjects(Text.class).get(2);
+            if (level != null) {
+                this.removeObject(level);
+            }
+
+            Text score = (Text) getObjects(Text.class).get(2);
+            if (score != null) {
+                this.removeObject(score);
+            }
+        }
+
+        addObject(new Text("Level : " + level), 550, 10);
+        addObject(new Text("Score : " + score), 550, 30);
     }
 }

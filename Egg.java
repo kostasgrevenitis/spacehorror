@@ -6,7 +6,7 @@ public class Egg extends Actor {
     public void act() {
         this.HealthStatus();
         this.Hatch();
-        τηισ.HatchAnimation();
+        this.HatchAnimation();
     }
 
     void HealthStatus() {
@@ -25,6 +25,7 @@ public class Egg extends Actor {
 
             int spidersLeft = ((StarshipWorld) (getWorld())).spawnedEnemies;
             ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : " + spidersLeft);
+            
             for (int i = 0; i < spiderNumber; i++) {
                 Enemy spider = new Enemy();
                 getWorld().addObject(spider, getX(), getY());

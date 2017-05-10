@@ -20,7 +20,6 @@ public class Enemy extends Actor {
         this.AttackPlayer();
         this.HealthStatus();
         this.LayEgg();
-        //this.ClusterBreed();
     }
 
     public void Move() {
@@ -71,9 +70,14 @@ public class Enemy extends Actor {
             getWorld().addObject(new Explosion(), getX(), getY());
             hitEnemy++;
             if (hitEnemy == health) {
-                ((StarshipWorld) (getWorld())).spawnedEnemies--;
-                int spidersLeft = ((StarshipWorld) (getWorld())).spawnedEnemies;
-                ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Spiders left : " + spidersLeft);
+                StarshipWorld starshipWorld = (StarshipWorld) getWorld();
+                starshipWorld.spawnedEnemies--;
+                ((Text) (getWorld().getObjects(Text.class).get(1)))
+                        .setText("Spiders left : " + starshipWorld.spawnedEnemies);
+
+                starshipWorld.score = starshipWorld.score + 100;
+                ((Text) (getWorld().getObjects(Text.class).get(3))).setText("Score : " + starshipWorld.score);
+
                 getWorld().removeObject(this);
             }
         }
