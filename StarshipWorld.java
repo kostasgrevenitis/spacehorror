@@ -21,6 +21,9 @@ public class StarshipWorld extends World {
         this.BuildPortal();
         this.SpawnEnemies();
         this.InitiateLevelAndScore();
+        GreenfootSound backgroundMusic = new GreenfootSound("Dark-noise-sound-effect.mp3");
+        backgroundMusic.setVolume(40);
+        backgroundMusic.playLoop();
         Greenfoot.playSound("electriccurrent.mp3");
     }
 
