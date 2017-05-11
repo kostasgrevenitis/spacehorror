@@ -87,6 +87,7 @@ public class Enemy extends Actor {
 
     private void LayEgg() {
         if (movementStep != 0) {
+            try {
             long eggNowTime = System.currentTimeMillis();
 
             if ((eggNowTime - startTime > 10000) && !isTouching(Player.class) && !isTouching(Explosion.class)
@@ -94,6 +95,9 @@ public class Enemy extends Actor {
                 Egg egg = new Egg();
                 getWorld().addObject(egg, getX(), getY());
                 startTime = System.currentTimeMillis();
+            }
+            } catch(IllegalStateException ex){
+
             }
         }
     }
