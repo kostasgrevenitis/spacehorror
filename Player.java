@@ -22,6 +22,7 @@ public class Player extends Actor {
                     getWorld().removeObject(playerLife);
                 }
                 this.setLocation(this.getX() + 60, this.getY() + 60);
+                Greenfoot.playSound("Chomp+1.mp3");
             }
             return;
         }
