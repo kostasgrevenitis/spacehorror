@@ -7,16 +7,7 @@ import greenfoot.*;
 
 public class Countdown extends Actor {
     public int countdownFrame;
-
-    private GreenfootImage countdownImage1;
-    private GreenfootImage countdownImage2;
-    private GreenfootImage countdownImage3;
-
-    public Countdown() {
-        countdownImage1 = new GreenfootImage("countdown_1.png");
-        countdownImage2 = new GreenfootImage("countdown_2.png");
-        countdownImage3 = new GreenfootImage("countdown_3.png");
-    }
+    public Countdown() {}
 
     public void act() {
         countdownFrame++;
@@ -25,12 +16,20 @@ public class Countdown extends Actor {
 
     public void countdown() {
         if (countdownFrame >= 0 && countdownFrame < 60) {
+            GreenfootImage countdownImage3 = new GreenfootImage("3_digit.png");
+            countdownImage3.scale(250, 250);
             setImage(countdownImage3);
         }
+
         if (countdownFrame > 60 && countdownFrame < 120) {
+            GreenfootImage countdownImage2 = new GreenfootImage("2_digit.png");
+            countdownImage2.scale(250, 250);
             setImage(countdownImage2);
         }
+
         if (countdownFrame > 120 && countdownFrame < 180) {
+            GreenfootImage countdownImage1 = new GreenfootImage("1_digit.png");
+            countdownImage1.scale(250, 250);
             setImage(countdownImage1);
         }
         if (countdownFrame > 180) {
