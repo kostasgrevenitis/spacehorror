@@ -5,10 +5,16 @@ public class Number extends Actor {
     private int health = 1;
     private static int movementStep;
     private int _goalNumber = -1;
+    private int myNumber = -1;
 
     public Number(int goalNumber) {
         this._goalNumber = goalNumber;
-        int rand = Greenfoot.getRandomNumber(this._goalNumber);
+        int rand = Greenfoot.getRandomNumber(this._goalNumber) + 1;
+        if(rand >= 10){
+            rand = 9;
+        }
+
+        this.myNumber = rand;
         GreenfootImage image = new GreenfootImage(rand + "_digit.png");
         image.scale(50, 50);
         setImage(image);
@@ -52,6 +58,9 @@ public class Number extends Actor {
                 GetNumbersWorld world = (GetNumbersWorld) getWorld();
                 world.score = world.score + 100;
                 ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Πόντοι : " + world.score);
+
+                world.currentSum = world.currentSum + this.myNumber;
+                ((Text) (getWorld().getObjects(Text.class).get(3))).setText("Μέχρι στιγμής το άθροισμα είναι : " + world.currentSum);
 
                 Greenfoot.playSound("Chomp+1.mp3");
                 getWorld().removeObject(this);

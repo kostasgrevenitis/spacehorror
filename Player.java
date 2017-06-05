@@ -25,7 +25,7 @@ public class Player extends Actor {
         // }
 
         if (Greenfoot.mouseClicked(null)) {
-            this.FireGun();
+            this.ThrowHand();
             Greenfoot.playSound("Gun+Luger.mp3");
             return;
         }
@@ -103,7 +103,7 @@ public class Player extends Actor {
         }
     }
 
-    private void FireGun() {
+    private void ThrowHand() {
         Projectile projectile = new Projectile(this.degrees);
         getWorld().addObject(projectile, this.getX(), this.getY());
     }

@@ -4,9 +4,11 @@ public class GetNumbersWorld extends World {
     private int spawnedNumbers;
     private int xOffset = 0;
     private int _goalNumber = -1;
+    private int duration = 120000;
 
     public int playerLifes = 5;
     
+    public static int currentSum = 0;
     public static int score = 0;
     public static int level = 0;
 
@@ -55,7 +57,6 @@ public class GetNumbersWorld extends World {
     }
 
     public void SpawnNumber() {
-        //Για να σιγουρέψουμε ότι δημιουργείται ο εχθρός μακριά από το παίχτη
         Number number = new Number(this._goalNumber);
         addObject(number, Greenfoot.getRandomNumber(50), Greenfoot.getRandomNumber(50));
     }
@@ -75,9 +76,10 @@ public class GetNumbersWorld extends World {
 
         addObject(new Text("Επίπεδο : " + level), 550, 10);
         addObject(new Text("Πόντοι : " + score), 550, 30);
-        addObject(new Text("Ο στόχος είναι ο αριθμός " + this._goalNumber ), 10, 10);
-        addObject(new Text("Μέχρι στιγμής το άθροισμα είναι "), 10, 30);
-        GreenfootTimer t = new GreenfootTimer(120);
-        addObject(t, 250, 50);
+        addObject(new Text("Ο στόχος είναι ο αριθμός : " + this._goalNumber ), 10, 10);
+        addObject(new Text("Μέχρι στιγμής το άθροισμα είναι : " + currentSum), 10, 30);
+        String t = String.format( "%.0f",(this.duration/1000.0));
+        addObject(new Text("Χρόνος : " + t + " δευτερόλεπτα"), 250, 50);
+        addObject(new GreenfootTimer(this.duration), 0, 0);
     }
 }
