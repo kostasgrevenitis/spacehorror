@@ -1,21 +1,15 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class SuccessWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class SuccessWorld extends World
-{
+public class SuccessWorld extends World {
 
-    /**
-     * Constructor for objects of class SuccessWorld.
-     * 
-     */
-    public SuccessWorld()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+    public SuccessWorld(int score) {    
+        super(640, 480, 1);
+        int rand = Greenfoot.getRandomNumber(10);
+        if(rand == 0) {
+            rand = 10;
+        }
+        
+        ButtonGoToLevel goToLevel = new ButtonGoToLevel(rand);
+        addObject(goToLevel, 320, 400);
     }
 }
