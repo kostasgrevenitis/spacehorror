@@ -65,9 +65,11 @@ public class Number extends Actor {
                 Greenfoot.playSound("Chomp+1.mp3");
                 getWorld().removeObject(this);
 
-                if(world.currentSum == world._goalNumber){
+                if(world.currentSum == world._goalNumber) {
+                    world.currentSum = 0;
                      Greenfoot.setWorld(new SuccessWorld(world.score));
                 } else if (world.currentSum > world._goalNumber) {
+                    world.currentSum = 0;
                     Greenfoot.setWorld(new FailWorld());
                 }
         }
