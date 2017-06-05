@@ -7,6 +7,9 @@ public class Menu extends World {
     }
 
     private void BuildMenu() {
+        GreenfootSound backgroundMusic = new GreenfootSound("mr_clown.mp3");
+        backgroundMusic.setVolume(40);
+        backgroundMusic.playLoop();
         ButtonPlay buttonPlay = new ButtonPlay();
         addObject(buttonPlay, 170, 420);
 

@@ -24,7 +24,12 @@ public class GreenfootTimer extends Actor {
         }else{
             ((Text) (getWorld().getObjects(Text.class).get(4))).setText("Χρόνος : 0 δευτερόλεπτα");
             this.finished = true;
-            Greenfoot.setWorld(new TimemoutFailedWorld());
+            GetNumbersWorld currentWorld = (GetNumbersWorld)getWorld();
+            TimemoutFailedWorld t = new TimemoutFailedWorld();
+            t.level = currentWorld.level;
+            t.playerLifes = --currentWorld.playerLifes;
+            t.score = currentWorld.score;
+            Greenfoot.setWorld(t);
         }
     }
 }

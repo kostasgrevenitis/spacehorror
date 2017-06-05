@@ -1,8 +1,8 @@
 import greenfoot.*;
+import java.util.List;
 
 public class GetNumbersWorld extends World {
     private int spawnedNumbers;
-    private int xOffset = 0;
     private int duration = 120000;
 
     public int playerLifes = 5;
@@ -27,17 +27,19 @@ public class GetNumbersWorld extends World {
             Projectile.class,
             Player.class);
 
-        this.BuildLifes();
+        this.BuildLifes(this.playerLifes);
         this.SpawnPlayer();
         this.SpawnNumbers();
         this.InitiateLevelAndScore();
-        GreenfootSound backgroundMusic = new GreenfootSound("mr_clown.mp3");
-        backgroundMusic.setVolume(40);
-        backgroundMusic.playLoop();
     }
 
-    private void BuildLifes() {
-        for (int i = 0; i < playerLifes; i++) {
+    public void BuildLifes(int _playerLifes) {
+        int xOffset = 0;
+        if(getObjects(PlayerLife.class).size() > 0) {
+            removeObjects(getObjects(PlayerLife.class));
+        }
+
+        for (int i = 0; i < _playerLifes; i++) {
             PlayerLife life = new PlayerLife();
             addObject(life, 250 + xOffset, 20);
             xOffset = xOffset + 30;
@@ -78,7 +80,7 @@ public class GetNumbersWorld extends World {
         addObject(new Text("Ο στόχος είναι ο αριθμός : " + this._goalNumber ), 10, 10);
         addObject(new Text("Μέχρι στιγμής το άθροισμα είναι : " + currentSum), 10, 30);
         String t = String.format( "%.0f",(this.duration/1000.0));
-        addObject(new Text("Χρόνος : " + t + " δευτερόλεπτα"), 250, 50);
+        addObject(new Text("Χρόνος : " + t + " δευτερόλεπτα"), 240, 50);
         addObject(new GreenfootTimer(this.duration), 0, 0);
     }
 }
