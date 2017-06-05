@@ -26,7 +26,7 @@ public class Player extends Actor {
 
         if (Greenfoot.mouseClicked(null)) {
             this.ThrowHand();
-            Greenfoot.playSound("Gun+Luger.mp3");
+            Greenfoot.playSound("throw_hand.mp3");
             return;
         }
 
