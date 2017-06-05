@@ -3,7 +3,6 @@ import greenfoot.*;
 public class GetNumbersWorld extends World {
     private int spawnedNumbers;
     private int xOffset = 0;
-    private int _goalNumber = -1;
     private int duration = 120000;
 
     public int playerLifes = 5;

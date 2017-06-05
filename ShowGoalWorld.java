@@ -1,7 +1,7 @@
 import greenfoot.*;  
 
-public class ShowGoal extends World {
-    public ShowGoal() {    
+public class ShowGoalWorld extends World {
+    public ShowGoalWorld() {    
         super(640, 480, 1); 
         int rand = Greenfoot.getRandomNumber(10);
         if(rand == 0) {
