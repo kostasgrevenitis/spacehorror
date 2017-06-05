@@ -31,10 +31,9 @@ public class GetNumbersWorld extends World {
         this.SpawnPlayer();
         this.SpawnNumbers();
         this.InitiateLevelAndScore();
-        GreenfootSound backgroundMusic = new GreenfootSound("Dark-noise-sound-effect.mp3");
+        GreenfootSound backgroundMusic = new GreenfootSound("mr_clown.mp3");
         backgroundMusic.setVolume(40);
         backgroundMusic.playLoop();
-        Greenfoot.playSound("electriccurrent.mp3");
     }
 
     private void BuildLifes() {

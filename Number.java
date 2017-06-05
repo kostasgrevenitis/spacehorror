@@ -62,7 +62,7 @@ public class Number extends Actor {
                 world.currentSum = world.currentSum + this.myNumber;
                 ((Text) (getWorld().getObjects(Text.class).get(3))).setText("Μέχρι στιγμής το άθροισμα είναι : " + world.currentSum);
 
-                Greenfoot.playSound("Chomp+1.mp3");
+                Greenfoot.playSound("number_dissappear.mp3");
                 getWorld().removeObject(this);
 
                 if(world.currentSum == world._goalNumber) {
