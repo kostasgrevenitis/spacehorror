@@ -1,6 +1,6 @@
 import greenfoot.*;
 
-public class Enemy extends Actor {
+public class Number extends Actor {
     private int countFrame = 1;
     private int hitEnemy = 0;
     private int health = 2;
@@ -8,7 +8,7 @@ public class Enemy extends Actor {
     private long startTime2;
     private static int movementStep;
 
-    public Enemy() {
+    public Number() {
         movementStep = 2;
         startTime = System.currentTimeMillis();
         startTime2 = System.currentTimeMillis();

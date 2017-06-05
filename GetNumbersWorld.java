@@ -64,8 +64,8 @@ public class GetNumbersWorld extends World {
 
     public void SpawnNumber() {
         //Για να σιγουρέψουμε ότι δημιουργείται ο εχθρός μακριά από το παίχτη
-        Enemy enemy = new Enemy();
-        addObject(enemy, Greenfoot.getRandomNumber(50), Greenfoot.getRandomNumber(50));
+        Number number = new Number();
+        addObject(number, Greenfoot.getRandomNumber(50), Greenfoot.getRandomNumber(50));
     }
 
     public void InitiateLevelAndScore() {
