@@ -4,6 +4,9 @@ public class ShowGoal extends World {
     public ShowGoal() {    
         super(640, 480, 1); 
         int rand = Greenfoot.getRandomNumber(10);
+        if(rand == 0) {
+            rand = 10;
+        }
         char[] randCharArray = Integer.toString(rand).toCharArray();
         int xPosition = 320-((100*(randCharArray.length-1))/randCharArray.length);
 

@@ -18,7 +18,6 @@ public class Number extends Actor {
     public void act() {
         this.Move();
         this.TurnAtEdge();
-        //this.AttackPlayer();
         this.HealthStatus();
     }
 
@@ -42,25 +41,6 @@ public class Number extends Actor {
         if (movementStep != 0) {
             if (isAtEdge()) {
                 turn(90);
-            }
-        }
-    }
-
-    public void AttackPlayer() {
-        if (!getObjectsInRange(200, Player.class).isEmpty()) {
-            Actor player = (Actor) getObjectsInRange(200, Player.class).get(0);
-            if (player != null) {
-                turnTowards(player.getX(), player.getY());
-                move(0);
-
-                if (intersects(player)) {
-                    GetNumbersWorld world = (GetNumbersWorld) getWorld();
-                    if (world.playerLifes == 1) {
-                        Greenfoot.playSound("Scream+9.mp3");
-                        getWorld().addObject(new GameOver(), 320, 240);
-                        movementStep = 0;
-                    }
-                }
             }
         }
     }
