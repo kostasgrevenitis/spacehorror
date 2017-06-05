@@ -2,24 +2,24 @@ import greenfoot.*;
 
 public class Number extends Actor {
     private int countFrame = 1;
-    private int hitEnemy = 0;
-    private int health = 2;
-    private long startTime;
-    private long startTime2;
+    private int health = 1;
     private static int movementStep;
+    private int _goalNumber = -1;
 
-    public Number() {
+    public Number(int goalNumber) {
+        this._goalNumber = goalNumber;
+        int rand = Greenfoot.getRandomNumber(this._goalNumber);
+        GreenfootImage image = new GreenfootImage(rand + "_digit.png");
+        image.scale(50, 50);
+        setImage(image);
         movementStep = 2;
-        startTime = System.currentTimeMillis();
-        startTime2 = System.currentTimeMillis();
     }
 
     public void act() {
         this.Move();
         this.TurnAtEdge();
-        this.AttackPlayer();
+        //this.AttackPlayer();
         this.HealthStatus();
-        this.LayEgg();
     }
 
     public void Move() {
@@ -54,8 +54,8 @@ public class Number extends Actor {
                 move(0);
 
                 if (intersects(player)) {
-                    StarshipWorld starshipWorld = (StarshipWorld) getWorld();
-                    if (starshipWorld.playerLifes == 1) {
+                    GetNumbersWorld world = (GetNumbersWorld) getWorld();
+                    if (world.playerLifes == 1) {
                         Greenfoot.playSound("Scream+9.mp3");
                         getWorld().addObject(new GameOver(), 320, 240);
                         movementStep = 0;
@@ -69,36 +69,12 @@ public class Number extends Actor {
         if (isTouching(Projectile.class)) {
             removeTouching(Projectile.class);
             getWorld().addObject(new Explosion(), getX(), getY());
-            hitEnemy++;
-            if (hitEnemy == health) {
-                StarshipWorld starshipWorld = (StarshipWorld) getWorld();
-                starshipWorld.spawnedEnemies--;
-                ((Text) (getWorld().getObjects(Text.class).get(1)))
-                        .setText("Spiders left : " + starshipWorld.spawnedEnemies);
-
-                starshipWorld.score = starshipWorld.score + 100;
-                ((Text) (getWorld().getObjects(Text.class).get(3))).setText("Score : " + starshipWorld.score);
+                GetNumbersWorld world = (GetNumbersWorld) getWorld();
+                world.score = world.score + 100;
+                ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Πόντοι : " + world.score);
 
                 Greenfoot.playSound("Chomp+1.mp3");
                 getWorld().removeObject(this);
-            }
-        }
-    }
-
-    private void LayEgg() {
-        if (movementStep != 0) {
-            try {
-            long eggNowTime = System.currentTimeMillis();
-
-            if ((eggNowTime - startTime > 10000) && !isTouching(Player.class) && !isTouching(Explosion.class)
-                    && !isTouching(Projectile.class) && getNeighbours(300, true, Egg.class).size() == 0) {
-                Egg egg = new Egg();
-                getWorld().addObject(egg, getX(), getY());
-                startTime = System.currentTimeMillis();
-            }
-            } catch(IllegalStateException ex){
-
-            }
         }
     }
 }

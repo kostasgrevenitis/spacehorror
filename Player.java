@@ -1,67 +1,58 @@
 import greenfoot.*;
 
 public class Player extends Actor {
-    private int shotsFired = 0;
     private int countFrame = 0;
     private int x = 0;
     private int y = 0;
     private int degrees = 0;
-    private int magazineSize = 30;
 
     public Player() {
-        this.shotsFired = 0;
     }
 
     public void act() {
-        if (isTouching(Enemy.class) == true) {
-            StarshipWorld starshipWorld = (StarshipWorld) getWorld();
-            if (starshipWorld.playerLifes > 0) {
-                starshipWorld.playerLifes--;
-                PlayerLife playerLife = (PlayerLife) getWorld().getObjects(PlayerLife.class).get(0);
-                if (playerLife != null) {
-                    getWorld().removeObject(playerLife);
-                }
-                this.setLocation(this.getX() + 60, this.getY() + 60);
-                Greenfoot.playSound("Chomp+1.mp3");
-            }
-            return;
-        }
+        // if (isTouching(Enemy.class) == true) {
+        //     StarshipWorld starshipWorld = (StarshipWorld) getWorld();
+        //     if (starshipWorld.playerLifes > 0) {
+        //         starshipWorld.playerLifes--;
+        //         PlayerLife playerLife = (PlayerLife) getWorld().getObjects(PlayerLife.class).get(0);
+        //         if (playerLife != null) {
+        //             getWorld().removeObject(playerLife);
+        //         }
+        //         this.setLocation(this.getX() + 60, this.getY() + 60);
+        //         Greenfoot.playSound("Chomp+1.mp3");
+        //     }
+        //     return;
+        // }
 
-        if (Greenfoot.mouseClicked(null) && !isTouching(Enemy.class)) {
+        if (Greenfoot.mouseClicked(null)) {
             this.FireGun();
             Greenfoot.playSound("Gun+Luger.mp3");
             return;
         }
 
-        if (Greenfoot.isKeyDown("r")) {
-            this.ReloadGun();
-            Greenfoot.playSound("Gun+Reload.mp3");
-            return;
-        }
-
         String direction = "";
-        if (Greenfoot.isKeyDown("w") && !isTouching(Enemy.class)) {
+        if (Greenfoot.isKeyDown("w")) {
             direction = "up";
             this.x = this.getX();
             this.y = this.getY() - 3;
             this.degrees = 270;
         }
 
-        if (Greenfoot.isKeyDown("s") && !isTouching(Enemy.class)) {
+        if (Greenfoot.isKeyDown("s")) {
             direction = "down";
             this.x = this.getX();
             this.y = this.getY() + 3;
             this.degrees = 90;
         }
 
-        if (Greenfoot.isKeyDown("a") && !isTouching(Enemy.class)) {
+        if (Greenfoot.isKeyDown("a")) {
             direction = "left";
             this.x = this.getX() - 3;
             this.y = this.getY();
             this.degrees = 180;
         }
 
-        if (Greenfoot.isKeyDown("d") && !isTouching(Enemy.class)) {
+        if (Greenfoot.isKeyDown("d")) {
             direction = "right";
             this.x = this.getX() + 3;
             this.y = this.getY();
@@ -113,17 +104,7 @@ public class Player extends Actor {
     }
 
     private void FireGun() {
-        if (shotsFired < magazineSize) {
-            Projectile projectile = new Projectile(this.degrees);
-            getWorld().addObject(projectile, this.getX(), this.getY());
-            shotsFired++;
-            ((Text) (getWorld().getObjects(Text.class).get(0)))
-                    .setText("Ammo spent : " + shotsFired + "/" + magazineSize);
-        }
-    }
-
-    public void ReloadGun() {
-        shotsFired = 0;
-        ((Text) (getWorld().getObjects(Text.class).get(0))).setText("Ammo spent : " + shotsFired + "/" + magazineSize);
+        Projectile projectile = new Projectile(this.degrees);
+        getWorld().addObject(projectile, this.getX(), this.getY());
     }
 }

@@ -7,7 +7,7 @@ public class Text extends Actor
 {
     public Text(int length) {
         GreenfootImage txtImg = new GreenfootImage(length * 14, 16);
-        txtImg.setColor(greenfoot.Color.BLACK);
+        txtImg.setColor(greenfoot.Color.WHITE);
         setImage(txtImg);
     }
 

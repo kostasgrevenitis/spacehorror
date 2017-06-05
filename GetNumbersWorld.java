@@ -1,15 +1,17 @@
 import greenfoot.*;
 
 public class GetNumbersWorld extends World {
-    public int spawnedNumbers;
-    public int playerLifes = 5;
+    private int spawnedNumbers;
     private int xOffset = 0;
-
+    private int _goalNumber = -1;
+    public int playerLifes = 5;
+    
     public static int score = 0;
     public static int level = 0;
 
-    public GetNumbersWorld() {
+    public GetNumbersWorld(int goalNumber) {
         super(640, 480, 1);
+        this._goalNumber = goalNumber;
         level++;
         int img = Greenfoot.getRandomNumber(3) + 1;
         this.setBackground(new GreenfootImage("background00" + img + ".jpg"));
@@ -17,15 +19,13 @@ public class GetNumbersWorld extends World {
             Text.class, 
             PlayerLife.class, 
             GameOver.class, 
-            Enemy.class, 
+            Number.class, 
             Explosion.class, 
             Projectile.class,
-            Player.class, 
-            Portal.class);
+            Player.class);
 
         this.BuildLifes();
         this.SpawnPlayer();
-        this.BuildPortal();
         this.SpawnNumbers();
         this.InitiateLevelAndScore();
         GreenfootSound backgroundMusic = new GreenfootSound("Dark-noise-sound-effect.mp3");
@@ -45,13 +45,6 @@ public class GetNumbersWorld extends World {
     private void SpawnPlayer() {
         Player player0 = new Player();
         addObject(player0, 320, 240);
-        //Text shotFiredText = new Text("Ammo spent : 0/30");
-        //addObject(shotFiredText, 10, 10);
-    }
-
-    private void BuildPortal() {
-        Portal portal0 = new Portal();
-        addObject(portal0, 320, 240);
     }
 
     private void SpawnNumbers() {
@@ -64,18 +57,18 @@ public class GetNumbersWorld extends World {
 
     public void SpawnNumber() {
         //Για να σιγουρέψουμε ότι δημιουργείται ο εχθρός μακριά από το παίχτη
-        Number number = new Number();
+        Number number = new Number(this._goalNumber);
         addObject(number, Greenfoot.getRandomNumber(50), Greenfoot.getRandomNumber(50));
     }
 
     public void InitiateLevelAndScore() {
         if (getObjects(Text.class).size() > 2) {
-            Text level = (Text) getObjects(Text.class).get(2);
+            Text level = (Text) getObjects(Text.class).get(0);
             if (level != null) {
                 this.removeObject(level);
             }
 
-            Text score = (Text) getObjects(Text.class).get(2);
+            Text score = (Text) getObjects(Text.class).get(1);
             if (score != null) {
                 this.removeObject(score);
             }
@@ -83,5 +76,7 @@ public class GetNumbersWorld extends World {
 
         addObject(new Text("Επίπεδο : " + level), 550, 10);
         addObject(new Text("Πόντοι : " + score), 550, 30);
+        addObject(new Text("Ο στόχος σου είναι ο αριθμός " + this._goalNumber ), 10, 10);
+        addObject(new Text("Μέχρι στιγμής το άθροισμα σου είναι "), 10, 30);
     }
 }
