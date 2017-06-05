@@ -2,14 +2,14 @@ import greenfoot.*;
 
 public class SuccessWorld extends World {
 
-    public SuccessWorld(int score) {    
+    public SuccessWorld(int goalNumber) {    
         super(640, 480, 1);
         int rand = Greenfoot.getRandomNumber(10);
         if(rand == 0) {
             rand = 10;
         }
 
-        char[] randCharArray = Integer.toString(score).toCharArray();
+        char[] randCharArray = Integer.toString(goalNumber).toCharArray();
         int xPosition = 320-((100*(randCharArray.length-1))/randCharArray.length);
 
         for(int i=0; i<randCharArray.length; i++){
