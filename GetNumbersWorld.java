@@ -7,6 +7,7 @@ public class GetNumbersWorld extends World {
 
     public int playerLifes = 5;
     
+    public int _goalNumber = -1;
     public static int currentSum = 0;
     public static int score = 0;
     public static int level = 0;
