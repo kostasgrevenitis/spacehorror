@@ -66,7 +66,7 @@ public class Number extends Actor {
                 getWorld().removeObject(this);
 
                 if(world.currentSum == world._goalNumber){
-                     Greenfoot.setWorld(new SuccessWorld(world._goalNumber));
+                     Greenfoot.setWorld(new SuccessWorld(world.score));
                 } else if (world.currentSum > world._goalNumber) {
                     Greenfoot.setWorld(new FailWorld());
                 }
