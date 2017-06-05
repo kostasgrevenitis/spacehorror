@@ -1,25 +1,32 @@
 import greenfoot.*;
 
-public class StarshipWorld extends World {
-    public int spawnedEnemies;
+public class GetNumbersWorld extends World {
+    public int spawnedNumbers;
     public int playerLifes = 5;
     private int xOffset = 0;
 
     public static int score = 0;
     public static int level = 0;
 
-    public StarshipWorld() {
+    public GetNumbersWorld() {
         super(640, 480, 1);
         level++;
         int img = Greenfoot.getRandomNumber(3) + 1;
         this.setBackground(new GreenfootImage("background00" + img + ".jpg"));
-        this.setPaintOrder(Text.class, PlayerLife.class, GameOver.class, Enemy.class, Explosion.class, Projectile.class,
-                Player.class, Portal.class);
+        this.setPaintOrder(
+            Text.class, 
+            PlayerLife.class, 
+            GameOver.class, 
+            Enemy.class, 
+            Explosion.class, 
+            Projectile.class,
+            Player.class, 
+            Portal.class);
 
         this.BuildLifes();
         this.SpawnPlayer();
         this.BuildPortal();
-        this.SpawnEnemies();
+        this.SpawnNumbers();
         this.InitiateLevelAndScore();
         GreenfootSound backgroundMusic = new GreenfootSound("Dark-noise-sound-effect.mp3");
         backgroundMusic.setVolume(40);
@@ -38,8 +45,8 @@ public class StarshipWorld extends World {
     private void SpawnPlayer() {
         Player player0 = new Player();
         addObject(player0, 320, 240);
-        Text shotFiredText = new Text("Ammo spent : 0/30");
-        addObject(shotFiredText, 10, 10);
+        //Text shotFiredText = new Text("Ammo spent : 0/30");
+        //addObject(shotFiredText, 10, 10);
     }
 
     private void BuildPortal() {
@@ -47,15 +54,15 @@ public class StarshipWorld extends World {
         addObject(portal0, 320, 240);
     }
 
-    private void SpawnEnemies() {
-        this.spawnedEnemies = (Greenfoot.getRandomNumber(4) + 1);
-        addObject(new Text("Spiders left : " + spawnedEnemies), 10, 30);
-        for (int i = 0; i < spawnedEnemies; i++) {
-            this.SpawnEnemy();
+    private void SpawnNumbers() {
+        this.spawnedNumbers = Greenfoot.getRandomNumber(10);
+        //addObject(new Text("Spiders left : " + spawnedEnemies), 10, 30);
+        for (int i = 0; i < this.spawnedNumbers; i++) {
+            this.SpawnNumber();
         }
     }
 
-    public void SpawnEnemy() {
+    public void SpawnNumber() {
         //Για να σιγουρέψουμε ότι δημιουργείται ο εχθρός μακριά από το παίχτη
         Enemy enemy = new Enemy();
         addObject(enemy, Greenfoot.getRandomNumber(50), Greenfoot.getRandomNumber(50));
@@ -74,7 +81,7 @@ public class StarshipWorld extends World {
             }
         }
 
-        addObject(new Text("Level : " + level), 550, 10);
-        addObject(new Text("Score : " + score), 550, 30);
+        addObject(new Text("Επίπεδο : " + level), 550, 10);
+        addObject(new Text("Πόντοι : " + score), 550, 30);
     }
 }
