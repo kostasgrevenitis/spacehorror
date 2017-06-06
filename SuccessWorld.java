@@ -2,17 +2,21 @@ import greenfoot.*;
 
 public class SuccessWorld extends World {
 
-    public int level = -1;
-    public int score = -1;
+    public static int level = -1;
+    public static int score = -1;
+    public static int playerLifes = -1;
 
     public SuccessWorld() {
         super(640, 480, 1);
+    }
+
+    public void ShowSuccess() {
         int rand = Greenfoot.getRandomNumber(10);
         if (rand == 0) {
             rand = 10;
         }
 
-        char[] randCharArray = Integer.toString(score).toCharArray();
+        char[] randCharArray = Integer.toString(this.score).toCharArray();
         int xPosition = 320 - ((100 * (randCharArray.length - 1)) / randCharArray.length);
 
         for (int i = 0; i < randCharArray.length; i++) {

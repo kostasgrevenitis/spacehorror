@@ -12,25 +12,27 @@ public class ButtonGoToLevel extends Actor {
             if(getWorld() instanceof SuccessWorld) {
                 SuccessWorld s = (SuccessWorld)getWorld();
                 ShowGoalWorld showGoalWorld = new ShowGoalWorld();
-                showGoalWorld.level = s.level;
+                showGoalWorld.level = ++s.level;
                 showGoalWorld.score = s.score;
-
-                ((Text) (showGoalWorld.getObjects(Text.class).get(0))).setText("Επίπεδο : " + showGoalWorld.level);
-                ((Text) (showGoalWorld.getObjects(Text.class).get(1))).setText("Πόντοι : " + showGoalWorld.score);
-
+                showGoalWorld.playerLifes = s.playerLifes;
                 Greenfoot.setWorld(showGoalWorld);
             }
             else if (getWorld() instanceof ShowGoalWorld) {
+                ShowGoalWorld showGoalWorld = new ShowGoalWorld();
                 GetNumbersWorld newWorld = new GetNumbersWorld(this._goalNumber);
                 newWorld.InitiateLevelAndScore();
-                newWorld.level = 1;
+
+                newWorld.level = showGoalWorld.level;
+                newWorld.score = showGoalWorld.score;
+                newWorld.playerLifes = showGoalWorld.playerLifes; //already minus one
                 newWorld.currentSum = 0;
-                newWorld.score = 0;
-                ((Text) (newWorld.getObjects(Text.class).get(0))).setText("Επίπεδο : 1");
-                ((Text) (newWorld.getObjects(Text.class).get(1))).setText("Πόντοι : 0");
+                
+                ((Text) (newWorld.getObjects(Text.class).get(0))).setText("Επίπεδο : " + newWorld.level);
+                ((Text) (newWorld.getObjects(Text.class).get(1))).setText("Πόντοι : "+ newWorld.score);
                 ((Text) (newWorld.getObjects(Text.class).get(3)))
                         .setText("Μέχρι στιγμής το άθροισμα είναι : 0");
-
+                        
+                newWorld.BuildLifes(newWorld.playerLifes);
                 Greenfoot.setWorld(newWorld);
             } else if (getWorld() instanceof TimemoutFailedWorld) {
                 TimemoutFailedWorld t = (TimemoutFailedWorld) getWorld();
@@ -48,8 +50,8 @@ public class ButtonGoToLevel extends Actor {
                 ((Text) (newWorld.getObjects(Text.class).get(1))).setText("Πόντοι : " + newWorld.score);
                 ((Text) (newWorld.getObjects(Text.class).get(3)))
                         .setText("Μέχρι στιγμής το άθροισμα είναι : " + newWorld.currentSum);
+                
                 newWorld.BuildLifes(newWorld.playerLifes);
-
                 Greenfoot.setWorld(newWorld);
             } else if (getWorld() instanceof FailWorld) {
                 FailWorld f = (FailWorld) getWorld();
@@ -58,15 +60,17 @@ public class ButtonGoToLevel extends Actor {
                 if ((newWorld.level - 1) > 0) {
                     newWorld.level--;
                 }
-                ;
+
                 newWorld.score = f.score;
                 newWorld.currentSum = 0;
+                newWorld.playerLifes = f.playerLifes; //already minus one
 
                 ((Text) (newWorld.getObjects(Text.class).get(0))).setText("Επίπεδο : " + newWorld.level);
                 ((Text) (newWorld.getObjects(Text.class).get(1))).setText("Πόντοι : " + newWorld.score);
                 ((Text) (newWorld.getObjects(Text.class).get(3)))
                         .setText("Μέχρι στιγμής το άθροισμα είναι : " + newWorld.currentSum);
                 newWorld.BuildLifes(newWorld.playerLifes);
+
                 Greenfoot.setWorld(newWorld);
             }
         }

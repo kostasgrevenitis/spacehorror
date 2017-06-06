@@ -72,10 +72,9 @@ public class Number extends Actor {
                 SuccessWorld s = new SuccessWorld();
                 s.level = world.level;
                 s.score = world.score;
+                s.ShowSuccess();
                 Greenfoot.setWorld(s);
             } else if (world.currentSum > world._goalNumber) {
-                // world.currentSum = 0;
-                // Greenfoot.setWorld(new FailWorld());
                 FailWorld f = new FailWorld();
                 f.level = world.level;
                 f.playerLifes = --world.playerLifes;
