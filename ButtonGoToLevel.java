@@ -10,7 +10,15 @@ public class ButtonGoToLevel extends Actor {
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
             if(getWorld() instanceof SuccessWorld) {
-                Greenfoot.setWorld(new ShowGoalWorld());
+                SuccessWorld s = (SuccessWorld)getWorld();
+                ShowGoalWorld showGoalWorld = new ShowGoalWorld();
+                showGoalWorld.level = s.level;
+                showGoalWorld.score = s.score;
+
+                ((Text) (showGoalWorld.getObjects(Text.class).get(0))).setText("Επίπεδο : " + showGoalWorld.level);
+                ((Text) (showGoalWorld.getObjects(Text.class).get(1))).setText("Πόντοι : " + showGoalWorld.score);
+
+                Greenfoot.setWorld(showGoalWorld);
             }
             else if (getWorld() instanceof ShowGoalWorld) {
                 GetNumbersWorld newWorld = new GetNumbersWorld(this._goalNumber);

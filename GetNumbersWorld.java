@@ -6,7 +6,7 @@ public class GetNumbersWorld extends World {
     public static int duration = 120000;
 
     public int playerLifes = 5;
-    
+
     public int _goalNumber = -1;
     public static int currentSum = 0;
     public static int score = 0;
@@ -18,14 +18,8 @@ public class GetNumbersWorld extends World {
         level++;
         int img = Greenfoot.getRandomNumber(3) + 1;
         this.setBackground(new GreenfootImage("background00" + img + ".jpg"));
-        this.setPaintOrder(
-            Text.class, 
-            PlayerLife.class, 
-            GameOver.class, 
-            Number.class, 
-            Explosion.class, 
-            Projectile.class,
-            Player.class);
+        this.setPaintOrder(Text.class, PlayerLife.class, GameOver.class, Number.class, Explosion.class,
+                Projectile.class, Player.class);
 
         this.BuildLifes(this.playerLifes);
         this.SpawnPlayer();
@@ -35,7 +29,7 @@ public class GetNumbersWorld extends World {
 
     public void BuildLifes(int _playerLifes) {
         int xOffset = 0;
-        if(getObjects(PlayerLife.class).size() > 0) {
+        if (getObjects(PlayerLife.class).size() > 0) {
             removeObjects(getObjects(PlayerLife.class));
         }
 
@@ -78,9 +72,9 @@ public class GetNumbersWorld extends World {
 
         addObject(new Text("Επίπεδο : " + level), 550, 10);
         addObject(new Text("Πόντοι : " + score), 550, 30);
-        addObject(new Text("Ο στόχος είναι ο αριθμός : " + this._goalNumber ), 10, 10);
+        addObject(new Text("Ο στόχος είναι ο αριθμός : " + this._goalNumber), 10, 10);
         addObject(new Text("Μέχρι στιγμής το άθροισμα είναι : " + currentSum), 10, 30);
-        String t = String.format( "%.0f",(this.duration/1000.0));
+        String t = String.format("%.0f", (this.duration / 1000.0));
         addObject(new Text("Χρόνος : " + t + " δευτερόλεπτα"), 240, 50);
         addObject(new GreenfootTimer(this.duration), 0, 0);
     }
