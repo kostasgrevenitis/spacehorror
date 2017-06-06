@@ -8,6 +8,7 @@ public class ButtonPlay extends Actor {
     }
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
+            ShowGoalWorld s = new ShowGoalWorld();
             Greenfoot.setWorld(new ShowGoalWorld());
         }
     }

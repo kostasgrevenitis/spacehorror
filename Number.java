@@ -10,7 +10,7 @@ public class Number extends Actor {
     public Number(int goalNumber) {
         this._goalNumber = goalNumber;
         int rand = Greenfoot.getRandomNumber(this._goalNumber) + 1;
-        if(rand >= 10){
+        if (rand >= 10) {
             rand = 9;
         }
 
@@ -52,26 +52,35 @@ public class Number extends Actor {
     }
 
     public void HealthStatus() {
+        GetNumbersWorld world = (GetNumbersWorld) getWorld();
+
         if (isTouching(Projectile.class)) {
             removeTouching(Projectile.class);
             getWorld().addObject(new Explosion(), getX(), getY());
-                GetNumbersWorld world = (GetNumbersWorld) getWorld();
-                world.score = world.score + 100;
-                ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Πόντοι : " + world.score);
 
-                world.currentSum = world.currentSum + this.myNumber;
-                ((Text) (getWorld().getObjects(Text.class).get(3))).setText("Μέχρι στιγμής το άθροισμα είναι : " + world.currentSum);
+            world.score = world.score + 100;
+            ((Text) (getWorld().getObjects(Text.class).get(1))).setText("Πόντοι : " + world.score);
 
-                Greenfoot.playSound("number_dissappear.mp3");
-                getWorld().removeObject(this);
+            world.currentSum = world.currentSum + this.myNumber;
+            ((Text) (getWorld().getObjects(Text.class).get(3)))
+                    .setText("Μέχρι στιγμής το άθροισμα είναι : " + world.currentSum);
 
-                if(world.currentSum == world._goalNumber) {
-                    world.currentSum = 0;
-                     Greenfoot.setWorld(new SuccessWorld(world.score));
-                } else if (world.currentSum > world._goalNumber) {
-                    world.currentSum = 0;
-                    Greenfoot.setWorld(new FailWorld());
-                }
+            Greenfoot.playSound("number_dissappear.mp3");
+            getWorld().removeObject(this);
+
+            if (world.currentSum == world._goalNumber) {
+                world.currentSum = 0;
+                Greenfoot.setWorld(new SuccessWorld(world.score));
+            } else if (world.currentSum > world._goalNumber) {
+                // world.currentSum = 0;
+                // Greenfoot.setWorld(new FailWorld());
+                FailWorld f = new FailWorld();
+                f.level = world.level;
+                f.playerLifes = --world.playerLifes;
+                f.score = world.score;
+                f._goalNumber = world._goalNumber;
+                Greenfoot.setWorld(f);
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class GetNumbersWorld extends World {
     private int spawnedNumbers;
-    private int duration = 120000;
+    public static int duration = 120000;
 
     public int playerLifes = 5;
     
@@ -63,16 +63,17 @@ public class GetNumbersWorld extends World {
     }
 
     public void InitiateLevelAndScore() {
-        if (getObjects(Text.class).size() > 2) {
-            Text level = (Text) getObjects(Text.class).get(0);
-            if (level != null) {
-                this.removeObject(level);
-            }
+        if (getObjects(Text.class).size() > 0) {
+            removeObjects(getObjects(Text.class));
+            // Text level = (Text) getObjects(Text.class).get(0);
+            // if (level != null) {
+            //     this.removeObject(level);
+            // }
 
-            Text score = (Text) getObjects(Text.class).get(1);
-            if (score != null) {
-                this.removeObject(score);
-            }
+            // Text score = (Text) getObjects(Text.class).get(1);
+            // if (score != null) {
+            //     this.removeObject(score);
+            // }
         }
 
         addObject(new Text("Επίπεδο : " + level), 550, 10);

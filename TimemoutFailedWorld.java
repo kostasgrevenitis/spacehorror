@@ -12,5 +12,6 @@ public class TimemoutFailedWorld extends World {
         }
         ButtonGoToLevel goToLevel = new ButtonGoToLevel(rand);
         addObject(goToLevel, 320, 400);
+        Greenfoot.playSound("fail_trumpet.mp3");
     }
 }
