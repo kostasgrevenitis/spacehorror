@@ -2,9 +2,9 @@ import greenfoot.*;
 
 public class SuccessWorld extends World {
 
-    public static int level = -1;
-    public static int score = -1;
-    public static int playerLifes = -1;
+    public static int level = 1;
+    public static int score = 0;
+    public static int playerLifes = 5;
 
     public SuccessWorld() {
         super(640, 480, 1);

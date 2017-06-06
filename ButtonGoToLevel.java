@@ -15,22 +15,28 @@ public class ButtonGoToLevel extends Actor {
                 showGoalWorld.level = ++s.level;
                 showGoalWorld.score = s.score;
                 showGoalWorld.playerLifes = s.playerLifes;
+                System.out.println(showGoalWorld.level);
+                showGoalWorld.duration = 120000 - (showGoalWorld.level* 1000);
                 Greenfoot.setWorld(showGoalWorld);
             }
             else if (getWorld() instanceof ShowGoalWorld) {
                 ShowGoalWorld showGoalWorld = new ShowGoalWorld();
                 GetNumbersWorld newWorld = new GetNumbersWorld(this._goalNumber);
-                newWorld.InitiateLevelAndScore();
 
                 newWorld.level = showGoalWorld.level;
                 newWorld.score = showGoalWorld.score;
                 newWorld.playerLifes = showGoalWorld.playerLifes; //already minus one
                 newWorld.currentSum = 0;
+                newWorld.duration = showGoalWorld.duration;
                 
                 ((Text) (newWorld.getObjects(Text.class).get(0))).setText("Επίπεδο : " + newWorld.level);
                 ((Text) (newWorld.getObjects(Text.class).get(1))).setText("Πόντοι : "+ newWorld.score);
                 ((Text) (newWorld.getObjects(Text.class).get(3)))
                         .setText("Μέχρι στιγμής το άθροισμα είναι : 0");
+
+                String t = String.format("%.0f", (newWorld.duration / 1000.0));
+                ((Text) (newWorld.getObjects(Text.class).get(4)))
+                        .setText("Χρόνος : " + t + " δευτερόλεπτα");
                         
                 newWorld.BuildLifes(newWorld.playerLifes);
                 Greenfoot.setWorld(newWorld);
@@ -42,7 +48,7 @@ public class ButtonGoToLevel extends Actor {
                 if ((newWorld.level - 1) > 0) {
                     newWorld.level--;
                 }
-                ;
+
                 newWorld.score = t.score;
                 newWorld.currentSum = 0;
 

@@ -3,7 +3,8 @@ import greenfoot.*;
 public class ShowGoalWorld extends World {
     public static int level = 1;
     public static int score = 0;
-    public static int playerLifes = -1;
+    public static int playerLifes = 5;
+    public static int duration = 120000;
 
     public ShowGoalWorld() {
         super(640, 480, 1);
