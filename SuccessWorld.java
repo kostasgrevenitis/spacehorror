@@ -17,7 +17,7 @@ public class SuccessWorld extends World {
             image.scale(100, 100);
             Container c = new Container();
             c.setImage(image);
-            addObject(c, xPosition, 250);
+            addObject(c, xPosition, 170);
             xPosition = xPosition + 110;
          }
 
