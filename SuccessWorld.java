@@ -23,5 +23,6 @@ public class SuccessWorld extends World {
 
         ButtonGoToLevel goToLevel = new ButtonGoToLevel(rand);
         addObject(goToLevel, 320, 400);
+        Greenfoot.playSound("success_fanfair.mp3");
     }
 }

@@ -10,9 +10,7 @@ public class ButtonGoToLevel extends Actor {
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
             if(getWorld() instanceof SuccessWorld) {
-                GetNumbersWorld newWorld = new GetNumbersWorld(this._goalNumber);
-                newWorld.duration = newWorld.duration - 2000;
-                Greenfoot.setWorld(new GetNumbersWorld(this._goalNumber));
+                Greenfoot.setWorld(new ShowGoalWorld());
             }
             else if (getWorld() instanceof ShowGoalWorld) {
                 GetNumbersWorld newWorld = new GetNumbersWorld(this._goalNumber);
